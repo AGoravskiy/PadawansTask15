@@ -153,7 +153,6 @@ namespace PadawansTask15
         /// </example>
         public int GetSumOfAllIntegers(object[] data)
         {
-            //return (data.ToList().Where(x => x is int)as List<int>).Sum();
             List<int> allInt = new List<int>();
             foreach (var item in data)
             {
