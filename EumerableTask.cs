@@ -18,8 +18,17 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetUppercaseStrings(IEnumerable<string> data)
         {
-            // TODO : Implement GetUppercaseStrings
-            throw new NotImplementedException();
+            List<string> dataUpper = data.ToList(); 
+            for (int i = 0; i < dataUpper.Count(); i++)
+            {
+                if (dataUpper[i] == null || dataUpper[i] == "")
+                {
+                    continue;
+                }
+
+                dataUpper[i] = dataUpper[i].ToUpper();
+            }
+            return dataUpper;
         }
 
         /// <summary> Transforms an each string from sequence to its length.</summary>
@@ -34,8 +43,19 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<int> GetStringsLength(IEnumerable<string> data)
         {
-            // TODO : Implement GetStringsLength
-            throw new NotImplementedException();
+            List<int> dataLenght = new List<int>();
+            foreach (var item in data)
+            {
+                if (item == null)
+                {
+                    dataLenght.Add(0);
+                }
+                else
+                {
+                    dataLenght.Add(item.Length);
+                }
+            }
+            return dataLenght;
         }
 
         /// <summary>Transforms integer sequence to its square sequence, f(x) = x * x. </summary>
@@ -50,8 +70,12 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<long> GetSquareSequence(IEnumerable<int> data)
         {
-            // TODO : Implement GetSquareSequence
-            throw new NotImplementedException();
+            List<long> dataSquare = new List<long>();
+            foreach (var item in data)
+            {
+                dataSquare.Add(item * item);
+            }
+            return dataSquare;
         }
 
         /// <summary> Filters a string sequence by a prefix value (case insensitive).</summary>
@@ -71,9 +95,26 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetPrefixItems(IEnumerable<string> data, string prefix)
         {
-            // TODO : Implement GetPrefixItems
-            throw new NotImplementedException();
+            if (prefix == null)
+            {
+                throw new ArgumentNullException();
+            }
+            List<string> dataWithPrefix = new List<string>();
+            foreach (var item in data)
+            {
+                if (item.Count() < prefix.Count())
+                {
+                    continue;
+                }
+
+                if (item.Substring(0, prefix.Count()).ToLower().Equals(prefix.ToLower()))
+                {
+                    dataWithPrefix.Add(item);
+                }
+            }
+            return dataWithPrefix;
         }
+
 
         /// <summary> Finds the 3 largest numbers from a sequence.</summary>
         /// <param name="data">Source sequence.</param>
@@ -89,8 +130,14 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<int> Get3LargestItems(IEnumerable<int> data)
         {
-            // TODO : Implement Get3LargestItems
-            throw new NotImplementedException();
+            List<int> data3Largest = data.ToList();
+            data3Largest.Sort();
+            data3Largest.Reverse();
+            if (data3Largest.Count() > 3)
+            {
+                data3Largest.RemoveRange(3, data3Largest.Count() - 3);
+            }
+            return data3Largest;
         }
 
         /// <summary> Calculates sum of all integers from object array.</summary>
@@ -106,8 +153,16 @@ namespace PadawansTask15
         /// </example>
         public int GetSumOfAllIntegers(object[] data)
         {
-            // TODO : Implement GetSumOfAllIntegers
-            throw new NotImplementedException();
+            //return (data.ToList().Where(x => x is int)as List<int>).Sum();
+            List<int> allInt = new List<int>();
+            foreach (var item in data)
+            {
+                if (item is int)
+                {
+                    allInt.Add((int)item);
+                }
+            }
+            return allInt.Sum();
         }
     }
 }
