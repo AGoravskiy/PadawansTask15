@@ -73,7 +73,7 @@ namespace PadawansTask15
             List<long> dataSquare = new List<long>();
             foreach (var item in data)
             {
-                dataSquare.Add(item * item);
+                dataSquare.Add((long)item * item);
             }
             return dataSquare;
         }
@@ -102,6 +102,10 @@ namespace PadawansTask15
             List<string> dataWithPrefix = new List<string>();
             foreach (var item in data)
             {
+                if (item == null)
+                {
+                    throw new ArgumentNullException();
+                }
                 if (item.Count() < prefix.Count())
                 {
                     continue;
