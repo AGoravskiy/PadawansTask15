@@ -104,7 +104,7 @@ namespace PadawansTask15
             {
                 if (item == null)
                 {
-                    throw new ArgumentNullException();
+                    continue;
                 }
                 if (item.Count() < prefix.Count())
                 {
